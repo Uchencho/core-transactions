@@ -45,7 +45,7 @@ func New(grpcClient grpc.ClientConnInterface, opts ...Options) App {
 // Handler returns the main Handler for the application
 func (a *App) Handler() http.HandlerFunc {
 	router := httprouter.New()
-	router.HandlerFunc(http.MethodPost, fmt.Sprintf("/transactions/accounts/:%s", accountIdParam), a.GetTransaction)
+	router.HandlerFunc(http.MethodGet, fmt.Sprintf("/transactions/accounts/:%s", accountIdParam), a.GetTransaction)
 
 	h := http.HandlerFunc(router.ServeHTTP)
 	return h
